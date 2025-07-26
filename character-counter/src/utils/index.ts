@@ -12,3 +12,10 @@ export function countWords(text: string): number {
 export function calculateReadingTime(wordCount: number): number {
   return wordCount / AVG_WPM
 }
+
+export function numberToTimeString(time: number): string {
+  const minutes = Math.floor(time)
+  const seconds = Math.floor((time - minutes) * 60)
+
+  return `${minutes}:${String(seconds).padStart(2, "0")}`
+}
