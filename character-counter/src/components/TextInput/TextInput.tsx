@@ -1,7 +1,9 @@
 import { type ReactNode } from "react"
 import { type TextInputProps } from "../../types"
-
-const TEXTAREA_ROWS: number = 10
+import {
+  TEXTINPUT_TEXTAREA_MAX_LENGTH,
+  TEXTINPUT_TEXTAREA_ROWS,
+} from "../../constants"
 
 export default function TextInput({
   onTextChange,
@@ -15,7 +17,8 @@ export default function TextInput({
   return (
     <div className="mb-3">
       <textarea
-        rows={TEXTAREA_ROWS}
+        maxLength={TEXTINPUT_TEXTAREA_MAX_LENGTH}
+        rows={TEXTINPUT_TEXTAREA_ROWS}
         className="form-control"
         placeholder={placeholder || ""}
         onChange={handleChange}>

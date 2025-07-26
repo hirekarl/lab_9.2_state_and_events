@@ -1,18 +1,10 @@
-import { type ReactNode, useState } from "react"
-import TextInput from "./components/TextInput/TextInput"
-import StatsDisplay from "./components/StatsDisplay/StatsDisplay"
+import type { ReactNode } from "react"
 import type { TextStats } from "./types"
-
+import { useState } from "react"
 import { countCharacters, countWords, calculateReadingTime } from "./utils"
-
-// TextInput props
-const placeholder: string = "Start typing your content here..."
-const initialValue: string = ""
-
-// StatsDisplay props
-const showReadingTime: boolean = true
-
-// (CharacterCounter props in ./components/StatsDisplay/StatsDisplay.tsx)
+import StatsDisplay from "./components/StatsDisplay/StatsDisplay"
+import TextInput from "./components/TextInput/TextInput"
+import { INITIAL_VALUE, PLACEHOLDER, SHOW_READING_TIME } from "./constants"
 
 function App(): ReactNode {
   const textStatsInitialValue: TextStats = {
@@ -36,11 +28,11 @@ function App(): ReactNode {
       <h1 className="my-4 text-center">Lab 9.2: State &amp; Events</h1>
       <TextInput
         onTextChange={updateTextStats}
-        placeholder={placeholder}
-        initialValue={initialValue}
+        placeholder={PLACEHOLDER}
+        initialValue={INITIAL_VALUE}
       />
-      <StatsDisplay stats={textStats} showReadingTime={showReadingTime} />
-      {/* CharacterCounter is invoked in StatsDisplay */}
+      <StatsDisplay stats={textStats} showReadingTime={SHOW_READING_TIME} />
+      {/* CharacterCounter invoked in StatsDisplay */}
     </div>
   )
 }

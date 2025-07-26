@@ -1,15 +1,13 @@
 import { type ReactNode } from "react"
 import { type StatsDisplayProps, type TextStats } from "../../types"
-import CharacterCounter from "../CharacterCounter/CharacterCounter"
 import { numberToTimeString } from "../../utils"
-
-const WORDCOUNT_WARNING_THRESHOLD: number = 0.8
-
-// CharacterCounter props
-// (required here; optional when passing to CharacterCounter)
-const MIN_WORDS: number = 1
-const MAX_WORDS: number = 400
-const TARGET_READING_TIME: number = 2 // minutes
+import CharacterCounter from "../CharacterCounter/CharacterCounter"
+import {
+  MAX_WORDS,
+  MIN_WORDS,
+  TARGET_READING_TIME,
+  WORDCOUNT_WARNING_THRESHOLD,
+} from "../../constants"
 
 export default function StatsDisplay({
   stats,
