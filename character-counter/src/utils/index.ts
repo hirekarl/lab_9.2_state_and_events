@@ -1,5 +1,5 @@
 // https://www.prsa.org/article/how-to-determine-average-reading-time
-const AVG_WPM: number = 200
+const AVERAGE_WORDS_PER_MINUTE: number = 200
 
 export function countCharacters(text: string): number {
   return text.length
@@ -10,7 +10,7 @@ export function countWords(text: string): number {
 }
 
 export function calculateReadingTime(wordCount: number): number {
-  return wordCount / AVG_WPM
+  return wordCount / AVERAGE_WORDS_PER_MINUTE
 }
 
 export function numberToTimeString(time: number): string {
