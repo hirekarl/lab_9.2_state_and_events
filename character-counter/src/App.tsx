@@ -1,44 +1,45 @@
-import type { ReactNode } from "react"
+import { type ReactNode, useState } from "react"
 import TextInput from "./components/TextInput/TextInput"
 import StatsDisplay from "./components/StatsDisplay/StatsDisplay"
-import CharacterCounter from "./components/CharacterCounter/CharacterCounter"
 import type { TextStats } from "./types"
 
-function App(): ReactNode {
-  // TextInput
-  function handleTextChange(text: string): void {
-    alert(text)
-  }
-  const placeholder: string = "placeholder"
-  const initialValue: string = "initialValue"
+import { countCharacters, countWords, calculateReadingTime } from "./utils"
 
-  // StatsDisplay
-  const testTextStats: TextStats = {
+function App(): ReactNode {
+  const textStatsInitialValue: TextStats = {
     characterCount: 0,
     wordCount: 0,
     readingTime: 0,
   }
-  const showReadingTime = true
+  const [textStats, setTextStats] = useState(textStatsInitialValue)
 
-  // CharacterCounter
-  const minWords: number = 1
-  const maxWords: number = 100
-  const targetReadingTime: number = 10
+  // TextInput
+  function updateText(newText: string): void {
+    const newTextStats: TextStats = {
+      characterCount: countCharacters(newText),
+      wordCount: countWords(newText),
+      readingTime: calculateReadingTime(countWords(newText)),
+    }
+    setTextStats(newTextStats)
+  }
+
+  const placeholder: string = "Start typing your content here..."
+  const initialValue: string = ""
+
+  // StatsDisplay
+  const showReadingTime = true
 
   return (
     <>
-      <h1>Lab 9.2: State &amp; Events</h1>
-      <TextInput
-        onTextChange={handleTextChange}
-        placeholder={placeholder}
-        initialValue={initialValue}
-      />
-      <StatsDisplay stats={testTextStats} showReadingTime={showReadingTime} />
-      <CharacterCounter
-        minWords={minWords}
-        maxWords={maxWords}
-        targetReadingTime={targetReadingTime}
-      />
+      <div className="container">
+        <h1 className="my-4">Lab 9.2: State &amp; Events</h1>
+        <TextInput
+          onTextChange={updateText}
+          placeholder={placeholder}
+          initialValue={initialValue}
+        />
+        <StatsDisplay stats={textStats} showReadingTime={showReadingTime} />
+      </div>
     </>
   )
 }
