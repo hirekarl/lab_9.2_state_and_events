@@ -33,7 +33,7 @@ function App(): ReactNode {
 
   return (
     <div className="container">
-      <h1 className="my-4">Lab 9.2: State &amp; Events</h1>
+      <h1 className="my-4 text-center">Lab 9.2: State &amp; Events</h1>
       <TextInput
         onTextChange={updateTextStats}
         placeholder={placeholder}

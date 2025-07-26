@@ -10,8 +10,10 @@ export default function CharacterCounter({
   function makeCharacterCounterString(): string {
     const displayStringItems: string[] = []
 
-    if (minWords !== undefined) displayStringItems.push(`Min: ${minWords}`)
-    if (maxWords !== undefined) displayStringItems.push(`Max: ${maxWords}`)
+    if (minWords !== undefined)
+      displayStringItems.push(`Min Words: ${minWords}`)
+    if (maxWords !== undefined)
+      displayStringItems.push(`Max Words: ${maxWords}`)
     if (targetReadingTime !== undefined)
       displayStringItems.push(
         `Target Reading Time: ${numberToTimeString(targetReadingTime)}`
@@ -20,5 +22,9 @@ export default function CharacterCounter({
     return displayStringItems.join(" | ")
   }
 
-  return <div className="text-center">{makeCharacterCounterString()}</div>
+  return (
+    <div className="text-center text-muted">
+      <small>{makeCharacterCounterString()}</small>
+    </div>
+  )
 }
