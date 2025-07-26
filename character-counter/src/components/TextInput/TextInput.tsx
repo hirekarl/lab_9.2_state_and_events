@@ -6,16 +6,14 @@ export default function TextInput({
   placeholder,
   initialValue,
 }: TextInputProps): ReactNode {
-  const testText = "This is some text."
+  function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    onTextChange(event.target.value)
+  }
 
   return (
-    <div>
-      <h2>TextInput</h2>
-      <ul>
-        {placeholder && <li>placeholder: {placeholder}</li>}
-        {initialValue && <li>initialValue: {initialValue}</li>}
-      </ul>
-      <textarea onChange={() => onTextChange(testText)}></textarea>
-    </div>
+    <textarea
+      className="form-control"
+      placeholder={placeholder || ""}
+      onChange={handleChange}>{initialValue || ""}</textarea>
   )
 }
