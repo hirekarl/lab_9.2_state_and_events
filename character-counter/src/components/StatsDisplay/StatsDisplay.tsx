@@ -3,10 +3,12 @@ import { type StatsDisplayProps, type TextStats } from "../../types"
 import CharacterCounter from "../CharacterCounter/CharacterCounter"
 import { numberToTimeString } from "../../utils"
 
+const WORDCOUNT_WARNING_THRESHOLD: number = 0.8
+
+// CharacterCounter props
 const minWords: number = 1
 const maxWords: number = 400
 const targetReadingTime: number = 2 // minutes
-const WORDCOUNT_WARNING_THRESHOLD: number = 0.8
 
 export default function StatsDisplay({
   stats,

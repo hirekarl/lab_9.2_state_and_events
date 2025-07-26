@@ -5,6 +5,15 @@ import type { TextStats } from "./types"
 
 import { countCharacters, countWords, calculateReadingTime } from "./utils"
 
+// TextInput props
+const placeholder: string = "Start typing your content here..."
+const initialValue: string = ""
+
+// StatsDisplay props
+const showReadingTime: boolean = true
+
+// (CharacterCounter props in ./components/StatsDisplay/StatsDisplay.tsx)
+
 function App(): ReactNode {
   const textStatsInitialValue: TextStats = {
     characterCount: 0,
@@ -13,8 +22,7 @@ function App(): ReactNode {
   }
   const [textStats, setTextStats] = useState(textStatsInitialValue)
 
-  // TextInput
-  function updateText(newText: string): void {
+  function updateTextStats(newText: string): void {
     const newTextStats: TextStats = {
       characterCount: countCharacters(newText),
       wordCount: countWords(newText),
@@ -23,24 +31,17 @@ function App(): ReactNode {
     setTextStats(newTextStats)
   }
 
-  const placeholder: string = "Start typing your content here..."
-  const initialValue: string = ""
-
-  // StatsDisplay
-  const showReadingTime = true
-
   return (
-    <>
-      <div className="container">
-        <h1 className="my-4">Lab 9.2: State &amp; Events</h1>
-        <TextInput
-          onTextChange={updateText}
-          placeholder={placeholder}
-          initialValue={initialValue}
-        />
-        <StatsDisplay stats={textStats} showReadingTime={showReadingTime} />
-      </div>
-    </>
+    <div className="container">
+      <h1 className="my-4">Lab 9.2: State &amp; Events</h1>
+      <TextInput
+        onTextChange={updateTextStats}
+        placeholder={placeholder}
+        initialValue={initialValue}
+      />
+      <StatsDisplay stats={textStats} showReadingTime={showReadingTime} />
+      {/* CharacterCounter is invoked in StatsDisplay */}
+    </div>
   )
 }
 

@@ -1,7 +1,7 @@
 import { type ReactNode } from "react"
 import { type TextInputProps } from "../../types"
 
-const TEXTAREA_ROWS = 10
+const TEXTAREA_ROWS: number = 10
 
 export default function TextInput({
   onTextChange,
