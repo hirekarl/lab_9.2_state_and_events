@@ -11,9 +11,14 @@ export default function TextInput({
   }
 
   return (
-    <textarea
-      className="form-control"
-      placeholder={placeholder || ""}
-      onChange={handleChange}>{initialValue || ""}</textarea>
+    <div className="mb-3">
+      <textarea
+        rows={10}
+        className="form-control"
+        placeholder={placeholder || ""}
+        onChange={handleChange}>
+        {initialValue || ""}
+      </textarea>
+    </div>
   )
 }
