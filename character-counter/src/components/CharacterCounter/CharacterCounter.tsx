@@ -1,6 +1,5 @@
 import { type ReactNode } from "react"
 import { type CharacterCounterProps } from "../../types"
-
 import { numberToTimeString } from "../../utils"
 
 export default function CharacterCounter({
