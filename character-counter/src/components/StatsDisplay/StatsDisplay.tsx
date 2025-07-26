@@ -38,6 +38,7 @@ export default function StatsDisplay({
       break
   }
 
+  // Only propagate styledReadingTimeDiv if showReadingTime is true
   // Style reading time with "text-danger" if above targetReadingTime max range
   let styledReadingTimeDiv: ReactNode
   if (showReadingTime) {
