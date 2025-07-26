@@ -6,9 +6,10 @@ import { numberToTimeString } from "../../utils"
 const WORDCOUNT_WARNING_THRESHOLD: number = 0.8
 
 // CharacterCounter props
-const minWords: number = 1
-const maxWords: number = 400
-const targetReadingTime: number = 2 // minutes
+// (required here; optional when passing to CharacterCounter)
+const MIN_WORDS: number = 1
+const MAX_WORDS: number = 400
+const TARGET_READING_TIME: number = 2 // minutes
 
 export default function StatsDisplay({
   stats,
@@ -18,30 +19,40 @@ export default function StatsDisplay({
 
   const characterCountString = characterCount.toLocaleString("en-US")
 
+  // Style word count with "text-danger" if out of range
+  // Style word count with "text-warning" if approaching max range
   let styledWordCountDiv: ReactNode
+  const wordCountString = characterCount.toLocaleString("en-US")
   switch (true) {
-    case wordCount < minWords:
-    case wordCount >= maxWords:
-      styledWordCountDiv = <div className="fs-3 text-danger">{wordCount}</div>
+    case wordCount < MIN_WORDS:
+    case wordCount >= MAX_WORDS:
+      styledWordCountDiv = (
+        <div className="fs-3 text-danger">{wordCountString}</div>
+      )
       break
-    case wordCount >= maxWords * WORDCOUNT_WARNING_THRESHOLD:
-      styledWordCountDiv = <div className="fs-3 text-warning">{wordCount}</div>
+    case wordCount >= MAX_WORDS * WORDCOUNT_WARNING_THRESHOLD:
+      styledWordCountDiv = (
+        <div className="fs-3 text-warning">{wordCountString}</div>
+      )
       break
     default:
       styledWordCountDiv = <div className="fs-3">{wordCount}</div>
       break
   }
 
+  // Style reading time with "text-danger" if above targetReadingTime max range
   let styledReadingTimeDiv: ReactNode
-  const readingTimeString = numberToTimeString(readingTime)
-  switch (true) {
-    case readingTime > targetReadingTime:
+  if (showReadingTime) {
+    const readingTimeString = numberToTimeString(readingTime)
+    if (readingTime > TARGET_READING_TIME) {
       styledReadingTimeDiv = (
         <div className="fs-3 text-danger">{readingTimeString}</div>
       )
-      break
-    default:
+    } else {
       styledReadingTimeDiv = <div className="fs-3">{readingTimeString}</div>
+    }
+  } else {
+    styledReadingTimeDiv = null
   }
 
   return (
@@ -63,9 +74,9 @@ export default function StatsDisplay({
         )}
       </div>
       <CharacterCounter
-        minWords={minWords}
-        maxWords={maxWords}
-        targetReadingTime={targetReadingTime}
+        minWords={MIN_WORDS}
+        maxWords={MAX_WORDS}
+        targetReadingTime={TARGET_READING_TIME}
       />
     </>
   )
