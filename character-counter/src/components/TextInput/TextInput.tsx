@@ -1,6 +1,8 @@
 import { type ReactNode } from "react"
 import { type TextInputProps } from "../../types"
 
+const TEXTAREA_ROWS = 10
+
 export default function TextInput({
   onTextChange,
   placeholder,
@@ -13,7 +15,7 @@ export default function TextInput({
   return (
     <div className="mb-3">
       <textarea
-        rows={10}
+        rows={TEXTAREA_ROWS}
         className="form-control"
         placeholder={placeholder || ""}
         onChange={handleChange}>
