@@ -6,14 +6,30 @@ export default function StatsDisplay({
   showReadingTime,
 }: StatsDisplayProps): ReactNode {
   const { characterCount, wordCount, readingTime }: TextStats = stats
+
+  function displayReadingTime(): string {
+    const minutes = Math.floor(readingTime)
+    const seconds = Math.floor((readingTime - minutes) * 60)
+
+    return `${minutes}:${String(seconds).padStart(2, '0')}`
+  }
+
   return (
-    <div>
-      <h2>StatsDisplay</h2>
-      <ul>
-        <li>characterCount: {characterCount}</li>
-        <li>wordCount: {wordCount}</li>
-        {showReadingTime && <li>readingTime: {readingTime}</li>}
-      </ul>
+    <div className="d-flex justify-content-between text-center">
+      <div>
+        <div>Characters</div>
+        <div>{characterCount}</div>
+      </div>
+      <div>
+        <div>Words</div>
+        <div>{wordCount}</div>
+      </div>
+      {showReadingTime && (
+        <div>
+          <div>Reading Time</div>
+          <div>{displayReadingTime()}</div>
+        </div>
+      )}
     </div>
   )
 }
