@@ -15,7 +15,7 @@ cd character-counter && npm i && npm run dev
 2. Navigate to http://localhost:5173 in the browser.
 
 ### Submission Source
-Top-level app behavior can be found in [`./character-counter/src/components/App.tsx`](./character-counter/src/components/App.tsx).
+Top-level app behavior can be found in [`./character-counter/src/App.tsx`](./character-counter/src/App.tsx).
 
 ### Reflection
 #### 1. How did you handle state updates when the text changed?
